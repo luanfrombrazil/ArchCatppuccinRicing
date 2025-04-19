@@ -1,0 +1,37 @@
+/*
+COMO EU APLIQUEI A IMAGEM DO FUNDO NO FIREFOX:
+
+ENTREI EM: about:support
+ABRI O DIRETÓRIO DO FIREFOX, CRIEI UMA PASTA CHAMADA DE chrome, 
+DENTRO DESSA PASTA COLOQUEI O ARQUIVO userContent.css e a pasta img
+
+FEITO ISSO SÓ ABRI NOVAMENTE O FIREFOX E LÁ ESTAVA A IMAGEM DE FUNDO
+
+A IMAGEM FOI BAIXADA DE UM REPOSITÓRIO CHEIO DE IMAGENS NO GITHUB
+
+
+*/
+
+@-moz-document url(about:home), url(about:newtab), url(about:privatebrowsing) {
+    .click-target-container *, .top-sites-list * {
+        color: #fff !important ;
+        text-shadow: 2px 2px 2px #222 !important ;
+    }
+
+    body::before {
+        content: "" ;
+        z-index: -1 ;
+        position: fixed ;
+        top: 0 ;
+        left: 0 ;
+        background: #f9a no-repeat url(img/wallpaper.jpg) center ;
+        background-size: cover ;
+        width: 100vw ;
+        height: 100vh ;
+    }
+
+    .search-wrapper .search-handoff-button{
+        background-color: rgb(17, 17, 27) !important;
+    }
+
+}

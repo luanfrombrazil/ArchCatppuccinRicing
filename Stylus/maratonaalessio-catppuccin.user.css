@@ -1,0 +1,223 @@
+/* ==UserStyle==
+@name           maratona.alessiojr.com/team
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Me
+==/UserStyle== */
+
+@-moz-document url-prefix("https://maratona.alessiojr.com/") {
+    :root{
+        --mauve: #cba6f7;
+        --roxo: #8c2cff;
+        --crust: #11111b;
+        --catgreen: #a6e3a1;
+        --textwhite: #cdd6f4;
+    }
+    /* Insert code here... */
+    body{
+        background-color: #1e1e2e;      
+        color: #cdd6f4;
+        font-variant: small-caps !important;
+    }
+    
+    
+    /* COMPONENTES */
+    .progress{
+        background-color: #cba6f7;
+    }
+    .progress-bar {
+         background-color: #8c2cff;
+        transition:width .6s ease;
+    }
+    .navbar-text{
+        color: #cba6f7 !important;
+    }
+    .bg-dark{
+        background-color: #11111b !important;
+    }
+    
+    .btn-success, .btn-secondary{
+        background-color: #cba6f7;
+        border-color: #cba6f7;
+        color: #11111b;
+    }
+    .btn-success:hover, .btn-secondary:hover{
+        background-color: #aa62ff;
+        border-color: #a85fff;
+    }
+    
+    .btn-outline-info,.btn-outline-secondary{
+        color: #cba6f7;
+        border-color:#cba6f7;
+    }
+    
+    .score_first{
+    background-color:  red !important;
+    }
+    .score_correct{
+        background-color: #a6e3a1 !important;
+    }
+    .score_incorrect{
+        background-color: #f38ba8 !important;
+    }
+    
+    /* SCORE TOP TABLE CHANGES     ,            */    
+   #teamscoresummary, #scoreprob,#scoreheader,.scoreboard{        
+        a{            
+        color:#cdd6f4;
+        }
+        color:#cdd6f4;
+       td{
+           border-bottom: 1px solid #cdd6f4;
+       }
+        th{
+            border-bottom: 3px solid #cdd6f4;
+            border:1px solid #cdd6f4;
+        }
+        td,tr{
+            background-color: #313244;
+            padding: 0.3cm;
+            
+        }
+       th{
+           background-color: #1e1e2e;
+           padding: 0.3cm;
+       }
+        th[title="rank"],th[title="team name"],th[title="# solved / penalty time"]{
+            border-right: 3px solid #cdd6f4;
+        }
+    }
+    /*
+    .scorelegend td, .scorelegend th{
+        
+    }
+    */
+    .card-header{
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #11111b;
+        border-bottom: 0px;
+        
+    }
+    #sortorderswitch{
+        left: 3px solid #cdd6f4 !important;
+    }
+  
+    .score_correct{
+        background-color:#a6e3a1;
+        color: #11111b;
+    }
+    
+    .score_incorrect{
+        background-color:#f38ba8;
+        color: #11111b;
+    }   
+    .scoreboard th{
+        border-right: 0px;
+    }
+    .sortorderswitch, .scoreboard td, .scoreboard th{
+        border: #cdd6f4;
+    }   
+       
+    /*SUBMISSIONS CHANGES*/
+    .nodata{
+        color: #cdd6f4;
+    }
+    .table-hover tbody tr:hover {        
+        background-color: #181825 !important;
+        color: white;;
+        font-weight: 700;
+        .sol_correct{
+            color: #13ff00;
+        }
+        .sol_incorrect{
+            color: #ff0c51;
+        }
+    }
+    .table{
+        font-variant: small-caps;
+        background-color:#313244;
+        color: #cdd6f4;
+        text-align:center;
+        line-height: 30px;
+        border: 0px !important;
+        .thead-light,th {
+            background-color: #11111b !important;
+            line-height: 38px;
+            color: white !important;
+            border-top:0px;
+        }
+    }
+     
+  
+    h3.teamoverview{
+        line-height: 1.5;
+        border-top: 10px;
+        font-variant: small-caps;
+        font-weight: 600;
+        font-family: sans-serif;
+        background-color:#11111b;
+        border: 1px solid #11111b;
+        color: #cdd6f4;
+        border-radius: 20px 20px 0px 0px;
+        padding: 0px;
+    }
+     
+    .sol_correct{
+        color: #a6e3a1;
+    }.sol_incorrect{
+        color: #f38ba8;
+    }
+    .card{
+        background-color: #1e1e2e;
+    }
+    .card-body,.list-group-item{
+        background-color: #11111b;
+        border-radius: 5px;
+    }
+    /*MODAL*/
+    .modal-content{
+        .badge-success{
+            font-size: 15px;
+            color: white;
+            background-color: #59cf50;
+            line-height:15px;
+        }
+        font-variant:small-caps;
+        h4{
+            
+        }
+        background-color: #1e1e2e;      
+        color: #cdd6f4;
+        
+        .table,td,tr{
+            border: 1px solid white !important;
+        }
+        h6{
+            margin-top:30px;
+        }
+        .nodata{
+            color: white;
+        }
+    }
+    .output_text{
+        background-color:#11111b;
+        color: white;
+        border: 0px;
+        border-radius:20px;        
+        font-family: "monospace";
+        padding: 25px;
+        padding-left: 35px;
+        font-variant:small-caps;
+        font-size: 16px;
+        
+        pre{
+            padding: 50px;
+            margin: 50px;
+        }
+    }
+    .scorethisisme{
+        background-color:  red !important;
+    }
+}

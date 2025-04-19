@@ -1,0 +1,824 @@
+/* ==UserStyle==
+DID SOME CHANGES TO francorav'S ORIGINAL CODE
+HERE'S WHATS CHANGED:
+	WHATSAPP ADDED FILTERS TO CHAT (ALL,UNREAD, FAVORITES), ADDED SUPPORT FOR THAT
+	MADE IT OCCUPY THE WHOLE SCREEN, FOR SOME REASON THE DEFAULT WHATSAPP WEB HAVE BORDERS
+	MADE THE HEADER A BIT DARKER, FITS MY FIREFOX THEME BETTER.	
+
+THE ORIGINAL CODE CAN BE FOUND IN github.com/FrancoRav/whatsapp-web
+IT WAS DOWNLOADED FROM VERSION 1.1.1
+SHOUTOUT TO FRANCORAV FOR ORIGINAL CODE
+
+@var select stylusAccent "Accent color" [
+	"Rosewater",
+	"Flamingo",
+	"Pink",
+	"Mauve",
+	"Red",
+    "Maroon",
+	"Peach",
+	"Yellow",
+    "Green",
+	"Teal",
+	"Sky",
+    "Sapphire",
+	"Blue",
+	"Lavender"
+]
+
+@var select stylusFlavor "Catppuccin Flavor" [
+    "Latte",
+    "Frappe",
+    "Macchiato",
+    "Mocha",
+    "Americano"
+]
+
+@var checkbox lighterMessages "Lighter incoming messages" 0
+==/UserStyle== */
+@-moz-document domain("web.whatsapp.com") {
+    
+    :root {
+        if stylusFlavor=="Latte" {
+            --rosewater: #dc8a78;
+            --flamingo: #dd7878;
+            --pink: #ea76cb;
+            --mauve: #8839ef;
+            --red: #d20f39;
+            --maroon: #e64553;
+            --peach: #fe640b;
+            --yellow: #df8e1d;
+            --green: #40a02b;
+            --teal: #179299;
+            --sky: #04a5e5;
+            --sapphire: #209fb5;
+            --blue: #1e66f5;
+            --lavender: #7287fd;
+            --text: #4c4f69;
+            --subtext1: #5c5f77;
+            --subtext0: #6c6f85;
+            --overlay2: #7c7f93;
+            --overlay1: #8c8fa1;
+            --overlay0: #9ca0b0;
+            --surface2: #acb0be;
+            --surface1: #bcc0cc;
+            --surface0: #ccd0da;
+            --base: #eff1f5;
+            --mantle: #e6e9ef;
+            --crust: #dce0e8;
+
+            --rosewater-darker: #dc8a78 - 10%;
+            --flamingo-darker: #dd7878 - 10%;
+            --pink-darker: #ea76cb - 10%;
+            --mauve-darker: #8839ef - 10%;
+            --red-darker: #d20f39 - 10%;
+            --maroon-darker: #e64553 - 10%;
+            --peach-darker: #fe640b - 10%;
+            --yellow-darker: #df8e1d - 10%;
+            --green-darker: #40a02b - 10%;
+            --teal-darker: #179299 - 10%;
+            --sky-darker: #04a5e5 - 10%;
+            --sapphire-darker: #209fb5 - 10%;
+            --blue-darker: #1e66f5 - 10%;
+            --lavender-darker: #7287fd - 10%;
+
+            /* non-standard colors */
+            --surface1-rgb: 188, 192, 204;
+            --surface0-rgb: 204, 208, 218;
+            --mantle-rgb: 230, 233, 239;
+            --mantle-backdrop: rgba(220, 224, 232, 0.85);
+            --text-rgb: 76, 79, 105;
+            --base-rgb: 239, 241, 245;
+            --surface1Transparent: #bcc0ccbd;
+            --mist: #dce0e8bd;
+        }
+        else if stylusFlavor=="Frappe" {
+            --rosewater: #f2d5cf;
+            --flamingo: #eebebe;
+            --pink: #f4b8e4;
+            --mauve: #ca9ee6;
+            --red: #e78284;
+            --maroon: #ea999c;
+            --peach: #ef9f76;
+            --yellow: #e5c890;
+            --green: #a6d189;
+            --teal: #81c8be;
+            --sky: #99d1db;
+            --sapphire: #85c1dc;
+            --blue: #8caaee;
+            --lavender: #babbf1;
+            --text: #c6d0f5;
+            --subtext1: #b5bfe2;
+            --subtext0: #a5adce;
+            --overlay2: #9f9cbb;
+            --overlay1: #838ba7;
+            --overlay0: #737994;
+            --surface2: #626880;
+            --surface1: #51576d;
+            --surface0: #414559;
+            --base: #303446;
+            --mantle: #292c3c;
+            --crust: #232634;
+
+            --rosewater-darker: #f2d5cf - 10%;
+            --flamingo-darker: #eebebe - 10%;
+            --pink-darker: #f4b8e4 - 10%;
+            --mauve-darker: #ca9ee6 - 10%;
+            --red-darker: #e78284 - 10%;
+            --maroon-darker: #ea999c - 10%;
+            --peach-darker: #ef9f76 - 10%;
+            --yellow-darker: #e5c890 - 10%;
+            --green-darker: #a6d189 - 10%;
+            --teal-darker: #81c8be - 10%;
+            --sky-darker: #99d1db - 10%;
+            --sapphire-darker: #85c1dc - 10%;
+            --blue-darker: #8caaee - 10%;
+            --lavender-darker: #babbf1 - 10%;
+
+            /* non-standard colors */
+            --surface1-rgb: 81, 87, 109;
+            --surface0-rgb: 65, 69, 89;
+            --mantle-rgb: 41, 44, 60;
+            --mantle-backdrop: rgba(41, 44, 60, 0.85);
+            --text-rgb: 198, 208, 245;
+            --base-rgb: 48, 52, 70;
+            --surface1Transparent: #51576dbd;
+            --mist: #232634bd;
+        }
+        else if stylusFlavor=="Macchiato" {
+            --rosewater: #f4dbd6;
+            --flamingo: #f0c6c6;
+            --pink: #f5bde6;
+            --mauve: #c6a0f6;
+            --red: #ed8796;
+            --maroon: #ee99a0;
+            --peach: #f5a97f;
+            --yellow: #eed49f;
+            --green: #a6da95;
+            --teal: #8bd5ca;
+            --sky: #91d7e3;
+            --sapphire: #7dc4e4;
+            --blue: #8aadf4;
+            --lavender: #b7bdf8;
+            --text: #cad3f5;
+            --subtext1: #b8c0e0;
+            --subtext0: #a5adcb;
+            --overlay2: #939ab7;
+            --overlay1: #8087a2;
+            --overlay0: #6e738d;
+            --surface2: #5b6078;
+            --surface1: #494d64;
+            --surface0: #363a4f;
+            --base: #24273a;
+            --mantle: #1e2030;
+            --crust: #181926;
+
+            --rosewater-darker: #f4dbd6 - 10%;
+            --flamingo-darker: #f0c6c6 - 10%;
+            --pink-darker: #f5bde6 - 10%;
+            --mauve-darker: #c6a0f6 - 10%;
+            --red-darker: #ed8796 - 10%;
+            --maroon-darker: #ee99a0 - 10%;
+            --peach-darker: #f5a97f - 10%;
+            --yellow-darker: #eed49f - 10%;
+            --green-darker: #a6da95 - 10%;
+            --teal-darker: #8bd5ca - 10%;
+            --sky-darker: #91d7e3 - 10%;
+            --sapphire-darker: #7dc4e4 - 10%;
+            --blue-darker: #8aadf4 - 10%;
+            --lavender-darker: #b7bdf8 - 10%;
+
+            /* non-standard colors */
+            --surface1-rgb: 73, 77, 100;
+            --surface0-rgb: 54, 58, 79;
+            --mantle-rgb: 30, 32, 48;
+            --mantle-backdrop: rgba(30, 32, 48, 0.85);
+            --text-rgb: 202, 211, 245;
+            --base-rgb: 36, 39, 58;
+            --surface1Transparent: #494d64bd;
+            --mist: #181926bd;
+        }
+        else if stylusFlavor=="Mocha" {
+            --rosewater: #f5e0dc;
+            --flamingo: #f2cdcd;
+            --pink: #f5c2e7;
+            --mauve: #cba6f7;
+            --red: #f38ba8;
+            --maroon: #eba0ac;
+            --peach: #fab387;
+            --yellow: #f9e2af;
+            --green: #a6e3a1;
+            --teal: #94e2d5;
+            --sky: #89dceb;
+            --sapphire: #74c7ec;
+            --blue: #89b4fa;
+            --lavender: #b4befe;
+            --text: #cdd6f4;
+            --subtext1: #bac2de;
+            --subtext0: #a6adc8;
+            --overlay2: #9399b2;
+            --overlay1: #7f849c;
+            --overlay0: #6c7086;
+            --surface2: #585b70;
+            --surface1: #45475a;
+            --surface0: #313244;
+            --base: #1e1e2e;
+            --mantle: #181825;
+            --crust: #11111b;
+
+            --rosewater-darker: #f5e0dc - 10%;
+            --flamingo-darker: #f2cdcd - 10%;
+            --pink-darker: #f5c2e7 - 10%;
+            --mauve-darker: #cba6f7 - 10%;
+            --red-darker: #f38ba8 - 10%;
+            --maroon-darker: #eba0ac - 10%;
+            --peach-darker: #fab387 - 10%;
+            --yellow-darker: #f9e2af - 10%;
+            --green-darker: #a6e3a1 - 10%;
+            --teal-darker: #94e2d5 - 10%;
+            --sky-darker: #89dceb - 10%;
+            --sapphire-darker: #74c7ec - 10%;
+            --blue-darker: #89b4fa - 10%;
+            --lavender-darker: #b4befe - 10%;
+
+            /* non-standard colors */
+            --surface1-rgb: 69, 71, 90;
+            --surface0-rgb: 49, 50, 68;
+            --mantle-rgb: 24, 24, 37;
+            --mantle-backdrop: rgba(24, 24, 37, 0.85);
+            --text-rgb: 205, 214, 244;
+            --base-rgb: 30, 30, 46;
+            --surface1Transparent: #45475abd;
+            --mist: #11111bbd;
+        }
+        else if stylusFlavor=="Americano" {
+            --rosewater: #f5e0dc;
+            --flamingo: #f2cdcd;
+            --pink: #f5c2e7;
+            --mauve: #cba6f7;
+            --red: #f38ba8;
+            --maroon: #eba0ac;
+            --peach: #fab387;
+            --yellow: #f9e2af;
+            --green: #a6e3a1;
+            --teal: #94e2d5;
+            --sky: #89dceb;
+            --sapphire: #74c7ec;
+            --blue: #89b4fa;
+            --lavender: #b4befe;
+            --text: #cdd6f4;
+            --subtext1: #bac2de;
+            --subtext0: #a6adc8;
+            --overlay2: #9399b2;
+            --overlay1: #7f849c;
+            --overlay0: #6c7086;
+            --surface2: #585b70;
+            --surface1: #45475a;
+            --surface0: #313244;
+            --base: #020202;
+            --mantle: #010101;
+            --crust: #000000;
+
+            --rosewater-darker: #f5e0dc - 10%;
+            --flamingo-darker: #f2cdcd - 10%;
+            --pink-darker: #f5c2e7 - 10%;
+            --mauve-darker: #cba6f7 - 10%;
+            --red-darker: #f38ba8 - 10%;
+            --maroon-darker: #eba0ac - 10%;
+            --peach-darker: #fab387 - 10%;
+            --yellow-darker: #f9e2af - 10%;
+            --green-darker: #a6e3a1 - 10%;
+            --teal-darker: #94e2d5 - 10%;
+            --sky-darker: #89dceb - 10%;
+            --sapphire-darker: #74c7ec - 10%;
+            --blue-darker: #89b4fa - 10%;
+            --lavender-darker: #b4befe - 10%;
+
+            /* non-standard colors */
+            --surface1-rgb: 69, 71, 90;
+            --surface0-rgb: 49, 50, 68;
+            --mantle-rgb: 1, 1, 1;
+            --mantle-backdrop: rgba(1, 1, 1, 0.85);
+            --text-rgb: 205, 214, 244;
+            --base-rgb: 2, 2, 2,;
+            --surface1Transparent: #45475abd;
+            --mist: #000000bd;
+        }
+
+        if stylusAccent=="Rosewater" {
+            --accent: var(--rosewater);
+            --accent-darker: var(--rosewater-darker);
+        }
+        else if stylusAccent=="Flamingo" {
+            --accent: var(--flamingo);
+            --accent-darker: var(--flamingo-darker);
+        }
+        else if stylusAccent=="Pink" {
+            --accent: var(--pink);
+            --accent-darker: var(--pink-darker);
+        }
+        else if stylusAccent=="Mauve" {
+            --accent: var(--mauve);
+            --accent-darker: var(--mauve-darker);
+        }
+        else if stylusAccent=="Red" {
+            --accent: var(--red);
+            --accent-darker: var(--red-darker);
+        }
+        else if stylusAccent=="Maroon" {
+            --accent: var(--maroon);
+            --accent-darker: var(--maroon-darker);
+        }
+        else if stylusAccent=="Peach" {
+            --accent: var(--peach);
+            --accent-darker: var(--peach-darker);
+        }
+        else if stylusAccent=="Yellow" {
+            --accent: var(--yellow);
+            --accent-darker: var(--yellow-darker);
+        }
+        else if stylusAccent=="Green" {
+            --accent: var(--green);
+            --accent-darker: var(--green-darker);
+        }
+        else if stylusAccent=="Teal" {
+            --accent: var(--teal);
+            --accent-darker: var(--teal-darker);
+        }
+        else if stylusAccent=="Sky" {
+            --accent: var(--sky);
+            --accent-darker: var(--sky-darker);
+        }
+        else if stylusAccent=="Sapphire" {
+            --accent: var(--sapphire);
+            --accent-darker: var(--sapphire-darker);
+        }
+        else if stylusAccent=="Blue" {
+            --accent: var(--blue);
+            --accent-darker: var(--blue-darker);
+        }
+        else if stylusAccent=="Lavender" {
+            --accent: var(--lavender);
+            --accent-darker: var(--lavender-darker);
+        }
+    }
+        
+    .dark {
+        
+        background-color: #1e1e2e !important;
+        
+        .landing-wrapper-before {
+            background-color: var(--accent) !important;
+        }
+
+        /* STATUS PAGE */
+        --status-background: var(--base) !important;
+        .bfsx6evv {
+            background-color: var(--mantle) !important;
+        }
+
+        --modal-backdrop-solid: var(--base) !important;
+
+        /* join group pop up */
+        --modal-background: var(--base) !important;
+
+        /* startup progress */
+        --progress-primary: var(--accent) !important;
+        --progress-background: var(--surface1) !important;
+        --startup-background: var(--base) !important;
+        --startup-background-rgb: var(--base-rgb) !important;
+        /* home page, no chat selected */
+        --intro-background: var(--base) !important;
+        --intro-border: var(--accent) !important;
+        /* general background */
+        --app-background: var(--base) !important;
+
+        /* CHAT LIST */
+
+        /* chat list background */
+        --background-default: var(--mantle) !important;
+        /* chat list header */
+        --panel-header-background: var(--mantle) !important;
+        /* icons */
+        --panel-header-icon: var(--text) !important;
+        /* other warnings (notifications) */
+        --butterbar-default-background: var(--mantle) !important;
+        --butterbar-notification-icon: var(--sky) !important;
+        /* loading messages warning */
+        --butterbar-green-nux-background: var(--mantle) !important;
+        /* update available warning */
+        --butterbar-update-background: var(--mantle) !important;
+        --butterbar-update-icon: var(--accent) !important;
+        /* chat list search bar */
+        --search-container-background: var(--base) !important;
+        --search-input-container-background: var(--base) !important;
+        --search-input-background: var(--surface0) !important;
+        --search-input-container-background-active: var(--mantle) !important;
+        --icon-search-back: var(--accent) !important;
+        /* archive icon */
+        --icon-bright-highlight: var(--accent) !important;
+        /* archived unread marker */
+        --unread-marker-background: var(--accent) !important;
+        --unread-timestamp: var(--accent) !important;
+        /* archived chats header */
+        --archived-chat-persistent-header-background: var(--crust) !important;
+        /* unread voice message */
+        --ptt-green: var(--green) !important;
+        /* read voice message */
+        --ptt-blue: var(--blue) !important;
+        /* pinned chat icon */
+        --icon-pinned: var(--accent) !important;
+        /* last message in selected chat */
+        --secondary-stronger: var(--subtext1) !important;
+        /* background for active and hover chats in chat list */
+        --background-default-active: var(--surface1) !important;
+        --background-default-hover: var(--surface0) !important;
+        /* unread chats filter */
+        --icon-high-emphasis: var(--green) !important;
+        .p7idzaix { color: var(--crust) !important; }
+        /* voice message playing */
+        --ptt-ooc-background: var(--mantle) !important;
+
+        /* CONVERSATION */
+
+        /* chat background */
+        --conversation-panel-background: var(--mantle) !important;
+        /* MESSAGES */
+        /* background for incoming and outgoing messages */
+
+        if (lighterMessages) {
+            --incoming-background: var(--surface0) !important;
+        }
+        else {
+            --incoming-background: var(--base) !important;
+        }
+        --outgoing-background: var(--crust) !important;
+        /* read double tick */
+        --icon-ack: var(--blue) !important;
+        /* received double tick */
+        --bubble-meta-icon: var(--subtext0) !important;
+        /* message timestamp */
+        --bubble-meta: var(--text) !important;
+        --message-primary: var(--text) !important;
+        /* POLL */
+        /* creation */
+        --poll-modal-background-color: var(--base) !important;
+        --poll-modal-footer-background-color: var(--surface0) !important;
+        /* votes */
+        --poll-bar-fill-receiver: var(--green) !important;
+        --poll-bar-fill-sender: var(--green) !important;
+        --checkbox-mark: var(--crust) !important;
+
+        /* audio duration */
+        --audio-progress-metadata: var(--subtext0) !important;
+        /* system messages (unread or day messages in chats) */
+        --system-message-text: var(--text) !important;
+        --system-message-background: var(--crust) !important;
+        /* unread system message background */
+        --unread-background: var(--crust) !important;
+        --unread-bar-background: var(--surace1) !important;
+        /* meta data for documents */
+        --document-meta: var(--subtext1) !important;
+        /* mentions, links and link previews */
+        --mention-at-symbol: var(--sapphire) !important;
+        --link: var(--sapphire) !important;
+        --link-preview: var(--text) !important;
+        --link-preview-lighter: var(--subtext1) !important;
+        --link-preview-light: var(--subtext0) !important;
+        /* arrow icon in messages */
+        if (lighterMessages) {
+            --incoming-background-rgb: var(--surface1-rgb) !important;
+        }
+        else {
+            --incoming-background-rgb: var(--base-rgb) !important;
+        }
+        --outgoing-background-rgb: var(--surface0-rgb) !important;
+        /* QUOTED MESSAGES */
+        /* quoted messages */
+        --quoted-message-text: var(--text) !important;
+        /* background for quoted incoming and outgoing messages */
+        --outgoing-background-deeper: var(--surface1) !important;
+        if (lighterMessages) {
+            --incoming-background-deeper: var(--surface2) !important;
+        }
+        else {
+            --incoming-background-deeper: var(--surface0) !important;
+        }
+
+        /* SEARCH IN CHAT HIGHLIGHT */
+        --highlight: var(--teal) !important;
+
+        /* quote colors */
+        .bg-color-1 {
+            background-color: var(--green) !important;
+        }
+        .color-1 {
+            color: var(--green) !important;
+        }
+        .bg-color-2 {
+            background-color: var(--blue) !important;
+        }
+        .color-2 {
+            color: var(--blue) !important;
+        }
+        .bg-color-3 {
+            background-color: var(--pink) !important;
+        }
+        .color-3 {
+            color: var(--pink) !important;
+        }
+        .bg-color-4 {
+            background-color: var(--sapphire) !important;
+        }
+        .color-4 {
+            color: var(--sapphire) !important;
+        }
+        .bg-color-5 {
+            background-color: var(--peach) !important;
+        }
+        .color-5 {
+            color: var(--peach) !important;
+        }
+        .bg-color-6 {
+            background-color: var(--sky) !important;
+        }
+        .color-6 {
+            color: var(--sky) !important;
+        }
+        .bg-color-7 {
+            background-color: var(--yellow) !important;
+        }
+        .color-7 {
+            color: var(--yellow) !important;
+        }
+        .bg-color-8 {
+            background-color: var(--teal) !important;
+        }
+        .color-8 {
+            color: var(--teal) !important;
+        }
+        .bg-color-9 {
+            background-color: var(--lavender) !important;
+        }
+        .color-9 {
+            color: var(--lavender) !important;
+        }
+        .bg-color-10 {
+            background-color: var(--red) !important;
+        }
+        .color-10 {
+            color: var(--red) !important;
+        }
+        .bg-color-11 {
+            background-color: var(--mauve) !important;
+        }
+        .color-11 {
+            color: var(--mauve) !important;
+        }
+        .bg-color-12 {
+            background-color: var(--flamingo) !important;
+        }
+        .color-12 {
+            color: var(--flamingo) !important;
+        }
+        .bg-color-13 {
+            background-color: var(--rosewater) !important;
+        }
+        .color-13 {
+            color: var(--rosewater) !important;
+        }
+        .bg-color-14 {
+            background-color: var(--pink) !important;
+        }
+        .color-14 {
+            color: var(--pink) !important;
+        }
+        .bg-color-15 {
+            background-color: var(--maroon) !important;
+        }
+        .color-15 {
+            color: var(--maroon) !important;
+        }
+        .bg-color-16 {
+            background-color: var(--teal) !important;
+        }
+        .color-16 {
+            color: var(--teal) !important;
+        }
+        /* general text */
+        --primary: var(--text) !important;
+        --primary-strong: var(--text) !important;
+        --primary-stronger: var(--text) !important;
+        --primary-strongest: var(--text) !important;
+        --secondary: var(--subtext0) !important;
+        --secondary-strongest-rgb: var(--text-rgb) !important;
+        /* chat list typing message */
+        --typing: var(--green) !important;
+        /* background for video player and image viewer */
+        --media-viewer-background: var(--mantle) !important;
+        /* not loaded media */
+        --media-gallery-thumb-background: var(--crust) !important;
+
+        /* Group info/Contact info */
+        --photopicker-overlay-background: var(--mantle-backdrop) !important;
+        --photopicker-overlay-background-rgb: var(--base-rgb) !important;
+        --media-viewer-background-rgb: var(--base-rgb) !important;
+        --drawer-background-deep: var(--crust) !important;
+        /* group info read more */
+        --input-button-more: var(--sapphire) !important;
+        /* Group info thumbnails border */
+        --chat-info-drawer-thumb-background: var(--surface2) !important;
+        /* Group admin badge background */
+        --chat-marker-background: var(--mantle) !important;
+        --chat-marker-border: var(--mantle) !important;
+        /* Group admin badge foreground */
+        --chat-marker: var(--subtext0) !important;
+        /* Media gallery */
+        --drawer-gallery-background: var(--crust) !important;
+        /* mute toggle */
+        --switch-button-checked-color: var(--accent) !important;
+        --switch-track-checked-color: var(--surface2) !important;
+        --switch-track-color: var(--surface2) !important;
+        --switch-button-color: var(--overlay1) !important;
+
+        /* danger, block, exit and report buttons */
+        --danger: var(--red) !important;
+
+        /* group added by someone not in contacts */
+        --button-plain-background: var(--surface0) !important;
+        --button-plain-background-hover: var(--surface1) !important;
+
+        /* EMOJI AND STICKERS */
+        --panel-input-background: var(--surface0) !important;
+        --sticker-button-background: var(--surface1) !important;
+        --active-tab-marker: var(--accent) !important;
+
+        /* REACTIONS */
+        --reactions-panel-background-color: var(--surface0) !important;
+        --reactions-tray-background: var(--surface0) !important;
+        --reactions-details-background: var(--surface0) !important;
+        --svg-gray-button: var(--surface0) !important;
+
+        /* Forward message popup */
+        --panel-background-colored-deeper: var(--crust) !important;
+        --modal-backdrop: var(--mantle-backdrop) !important;
+
+        /* MEDIA EDITOR */
+        /* background for media editor */
+        --panel-background-deeper: var(--mantle) !important;
+        /* message box for media editor */
+        --media-editor-image-caption-input-background: var(--surface0) !important;
+        /* selected picture in media editor */
+        --media-editor-thumb-border-active: var(--accent) !important;
+        /* send button in media editor */
+        --button-round-background: var(--accent) !important;
+
+        /* COMPOSE BAR */
+        /* type a message bar and background */
+        --compose-input-background: var(--surface0) !important;
+        --compose-input-border: var(--surface1) !important;
+        --compose-panel-background: var(--mantle) !important;
+        --rich-text-panel-background: var(--mantle) !important;
+        /* select messages fixes */
+        --panel-background: var(--mantle) !important;
+        --panel-background-rgb: var(--mantle-rgb) !important;
+        --checkbox-background: var(--accent) !important;
+        /* quoted message in compose */
+        --popup-panel-background: var(--surface0) !important; /* use Surface 0 for contrast, other colors don't pass AAA */
+        /* mention list item background */
+        --compose-panel-background-hover: var(--surface1) !important;
+        /* compose bar icons */
+        --icon: var(--accent) !important;
+        /* ATTACH ICONS */
+        /* poll icon */
+        div._1OT67 > div > span > div > div > ul > li:nth-child(6) > button > span > svg > circle {
+            fill: var(--green) !important;
+        }
+        /* image icon */
+        div._1OT67 > div > span > div > div > ul > li:nth-child(1) > button > span > svg > g:nth-child(1) > g > path:nth-child(2) {
+            fill: var(--pink) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(1) > button > span > svg > g:nth-child(1) > g > path:nth-child(1) {
+            fill: var(--pink) !important;
+            filter: brightness(85%) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(1) > button > span > svg > g:nth-child(1) > g > rect {
+            fill: var(--pink) !important;
+            filter: brightness(70%) !important;
+        }
+        /* sticker icon */
+        div._1OT67 > div > span > div > div > ul > li:nth-child(2) > button > span > svg > g > circle {
+            fill: var(--blue) !important;
+            filter: brightness(85%) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(2) > button > span > svg > g > path:nth-child(2) {
+            fill: var(--blue) !important;
+        }
+        /* camera icon */
+        div._1OT67 > div > span > div > div > ul > li:nth-child(3) > button > span > svg > g:nth-child(1) > g > path:nth-child(1) {
+            fill: var(--red) !important;
+            filter: brightness(85%) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(3) > button > span > svg > g:nth-child(1) > g > path:nth-child(2) {
+            fill: var(--red) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(3) > button > span > svg > g:nth-child(1) > g > rect {
+            fill: var(--red) !important;
+            filter: brightness(85%) !important;
+        }
+        /* document icon */
+        div._1OT67 > div > span > div > div > ul > li:nth-child(4) > button > span > svg > g:nth-child(1) > g > path:nth-child(1) {
+            fill: var(--mauve) !important;
+            filter: brightness(85%) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(4) > button > span > svg > g:nth-child(1) > g > path:nth-child(2) {
+            fill: var(--mauve) !important;
+        }
+        /* contact icon */
+        div._1OT67 > div > span > div > div > ul > li:nth-child(5) > button > span > svg > g:nth-child(1) > g > g > path:nth-child(1) {
+            fill: var(--sky) !important;
+            filter: brightness(85%) !important;
+        }
+        div._1OT67 > div > span > div > div > ul > li:nth-child(5) > button > span > svg > g:nth-child(1) > g > g > path:nth-child(2) {
+            fill: var(--sky) !important;
+        }
+        /* VOICE MESSAGE SENDING */
+        --ptt-draft-button-send: var(--accent) !important;
+        --ptt-draft-waveform-background: var(--base) !important;
+        --ptt-draft-button-stop: var(--red) !important;
+        --ptt-draft-button-stop-hover: var(--maroon) !important;
+
+        /* GENERAL OPTIONS */
+
+        /* dropdown menus */
+        --dropdown-background: var(--surface0) !important;
+        --dropdown-background-hover: var(--surface1) !important;
+
+        /* OTHER SECTIONS */
+
+        /* profile background */
+        --drawer-background: var(--base) !important;
+        /* communities, new chat, other panes */
+        --panel-background-colored: var(--mantle) !important;
+        --drawer-section-background: var(--base) !important;
+        /* new chat icons */
+        --round-icon-background: var(--green) !important;
+        --inverse: var(--text) !important;
+        /* title and icon for drawers */
+        --drawer-header-title: var(--text) !important;
+        /* buttons such as create community */
+        --button-primary-background: var(--accent) !important;
+        --button-primary-background-hover: var(--accent-darker) !important;
+        /* keyboard shortcuts background */
+        --panel-background-lighter: var(--mantle) !important;
+        /* active input in modals and drawers */
+        --input-border-active: var(--accent) !important;
+    }
+    
+    @media not all and (display-mode: standalone) {           
+        .app-wrapper-web ._aigs:not(._as6h){          
+            top: 0px;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+         }
+    }
+    
+    @media screen and (min-width: 1300px) {
+        .two ._aigw:not(._as6h):not(._asu3) {
+            max-width: 25%;
+        }
+        }    
+    header{
+        background-color: var(--mantle) !important;
+    }
+
+    div[aria-label='chat-list-filters']{
+         background-color: var(--mantle) !important;
+    }
+    
+    button[aria-selected='true']{
+         background-color:#cba6f7  !important;
+         color: black;
+    }
+    
+    button[aria-selected='false']{
+         background-color:#382e43  !important;
+         color: white;
+    }
+
+    /* Start page drawing */
+    #app > div > div > div._2Ts6i._2xAQV > div > div > div.WM0_u > span > svg > path:nth-child(1) {
+        fill: var(--surface2) !important;
+    }
+
+    /* Status unread dot */
+    #df9d3429-f0ef-48b5-b5eb-f9d27b2deba6 > path:nth-child(2) {
+        fill: var(--accent) !important;
+    }
+
+    #side > div._3gYev > div > div > button > div._3xdht._1ZD3q > span > svg > path {
+        fill: var(--accent) !important;
+    }
+}
